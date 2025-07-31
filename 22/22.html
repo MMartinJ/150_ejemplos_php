@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>Formulario de entrada de datos</TITLE>
+</HEAD>
+<BODY>
+
+<FORM METHOD="post" ACTION="resultado.php">
+
+<P><strong>Introduce el texto:</strong><br>
+<TEXTAREA NAME="text" COLS=45 ROWS=5 WRAP=virtual></TEXTAREA>
+</p>
+
+<P><strong>Funciones de Cadena:</strong><br>
+<INPUT TYPE="radio" NAME="func" VALUE="md5" checked> Obtener md5<br>
+<INPUT TYPE="radio" NAME="func" VALUE="strlen"> Obtener la longitud de la cadena<br>
+<INPUT TYPE="radio" NAME="func" VALUE="strrev"> Obtener cadena Inversa<br>
+<INPUT TYPE="radio" NAME="func" VALUE="strtoupper"> Hacer la cadena en mayusculas<br>
+<INPUT TYPE="radio" NAME="func" VALUE="strtolower"> Hacer la cadena en minusculas<br>
+<INPUT TYPE="radio" NAME="func" VALUE="ucwords"> Hacer las primeras letras mayusculas</p>
+
+<P><INPUT TYPE="submit" NAME="submit" VALUE="Mostrar Resultados"></p>
+
+</FORM>
+
+</BODY>
+</HTML>

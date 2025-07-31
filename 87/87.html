@@ -1,0 +1,29 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Div que aparece y desaparece en 2 segundos</title>
+<style>
+#miDiv {
+	background-color: #FFF;
+	text-align: center;
+	line-height: 200px;
+	display: block;
+}
+</style>
+</head>
+
+<body>
+<div id="miDiv"> <img src="cargando-loading-033.gif" width="50" height="50" alt="Imagen 1"></div>
+</body>
+
+ <script>
+var miDiv = document.getElementById("miDiv");
+
+setTimeout(function() {
+  miDiv.style.display = "none";
+}, 2000);
+
+ </script>
+
+</html>

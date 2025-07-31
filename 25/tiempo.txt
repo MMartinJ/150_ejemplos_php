@@ -1,0 +1,3 @@
+&mimensaje=04&
+&minuts=36&
+&segund=52&

@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+
+nav ul {
+  list-style: none;
+  margin: 10;
+  padding: 0;
+/*  background-color: #333;*/
+  text-align: center;
+}
+
+nav ul li {
+  display: inline-block; /*  Coloca debajo del botón */
+  position: relative;
+}
+
+nav ul li a { /* texto propiedades */
+	display: block;
+	padding: 1px; /* Pega o separa el menú del boton */
+	color: #fff; /* color texto */
+	font-size: 10px;/* Tamaño texto */
+	text-decoration: none;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+nav ul li:hover {
+/*  background-color: #555;*/
+}
+
+nav ul ul { /* preferencias subMenu */
+	display: none; /* Hace que no aparezca si no me coloco sobre *!
+	position: absolute; /* posición */
+	top: 98%; /* mueve con relación al boton el submenu */
+	left: 0px;/* posición submenu izquierdo*/
+	background-color: #999; /* color de submenu */
+	width: 100px; /* ajusta el ancho del submenú */
+	border-radius: 4px; /* agrega un borde redondeado */
+}
+
+nav ul ul li {
+  display: block;
+}
+
+nav ul li:hover > ul {
+  display: inherit;
+}
+
+nav ul ul li a {
+  padding: 5px; /*Separación entre las opciones de los submenus */
+}
+
+nav ul ul li:hover {
+	background-color: #CCC; /* color sobre cuando pasas por encima de los submenus */
+}

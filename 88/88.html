@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mostrar div oculto</title>
+</head>
+
+<body>
+<!-- Boton para mostrar/ocultar el div -->
+<button type="button" onclick="mostrarOcultarDiv()">Activar perfil</button>
+
+<div id="mensaje" style="display: none; color: orange;">
+  <br>
+  Subiendo archivos... espera un momento.
+</div>
+
+<script>
+  function mostrarOcultarDiv() {
+    var mensajeDiv = document.getElementById("mensaje");
+    if (mensajeDiv.style.display === "none") {
+      mensajeDiv.style.display = "block";
+    } else {
+      mensajeDiv.style.display = "none";
+    }
+  }
+</script>
+
+
+</body>
+</html>

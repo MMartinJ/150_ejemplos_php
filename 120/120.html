@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Grabar video y descargar enlace</title>
+  <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+</head>
+<body>
+  <video id="videoElement" width="100%" height="100%" autoplay></video>
+  <button id="startButton">Iniciar Grabación</button>
+  <button id="stopButton">Detener Grabación</button>
+
+  <script>
+    var videoElement = document.getElementById('videoElement');
+    var startButton = document.getElementById('startButton');
+    var stopButton = document.getElementById('stopButton');
+    var recordRTC;
+    var mediaStream;
+
+    startButton.addEventListener('click', function() {
+      var constraints = { video: { facingMode: 'environment' }, audio: true };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
+          videoElement.srcObject = stream;
+          mediaStream = stream;
+          recordRTC = RecordRTC(stream, {
+            type: 'video'
+          });
+
+          recordRTC.startRecording();
+
+          startButton.disabled = true;
+          stopButton.disabled = false;
+        })
+        .catch(function(error) {
+          console.error('Error al acceder a la cámara: ', error);
+        });
+    });
+
+    stopButton.addEventListener('click', function() {
+      recordRTC.stopRecording(function() {
+        var blob = recordRTC.getBlob();
+        var videoURL = URL.createObjectURL(blob);
+
+        var downloadLink = document.createElement('a');
+        downloadLink.href = videoURL;
+        downloadLink.download = 'grabacion.webm';
+        downloadLink.innerHTML = 'Descargar video';
+
+        var downloadSection = document.getElementById('downloadSection');
+        downloadSection.innerHTML = '';
+        downloadSection.appendChild(downloadLink);
+
+        recordRTC.getDataURL(function(dataURL) {
+          recordRTC.save('grabacion.webm');
+        });
+
+        recordRTC.reset();
+
+        // Liberar audio y cámara
+        if (mediaStream) {
+          var tracks = mediaStream.getTracks();
+          tracks.forEach(function(track) {
+            track.stop();
+          });
+        }
+
+        startButton.disabled = false;
+        stopButton.disabled = true;
+      });
+    });
+  </script>
+  <div id="downloadSection"></div>
+</body>
+</html>

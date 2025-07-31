@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Capturar foto y descargar enlace</title>
+</head>
+<body>
+  <video id="videoElement" width="100%" height="100%" autoplay></video>
+  <button id="captureButton">Tomar Foto</button>
+  <canvas id="canvasElement" width="100" height="100" style="display: none;"></canvas>
+  <div id="downloadSection"></div>
+
+  <script>
+    var videoElement = document.getElementById('videoElement');
+    var captureButton = document.getElementById('captureButton');
+    var canvasElement = document.getElementById('canvasElement');
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: 'environment' } } })
+        .then(function(stream) {
+          videoElement.srcObject = stream;
+
+          captureButton.addEventListener('click', function() {
+            var context = canvasElement.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+            var photoURL = canvasElement.toDataURL('image/png');
+
+            var downloadLink = document.createElement('a');
+            downloadLink.href = photoURL;
+            downloadLink.download = 'captura.png';
+            downloadLink.innerHTML = 'Descargar foto';
+
+            var downloadSection = document.getElementById('downloadSection');
+            downloadSection.innerHTML = '';
+            downloadSection.appendChild(downloadLink);
+          });
+        })
+        .catch(function(error) {
+          console.error('Error al acceder a la cámara: ', error);
+        });
+    } else {
+      console.error('La API de captura de medios no es compatible con este navegador.');
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Video de fondo de pantalla</title>
+
+<style>
+video {  
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: fixed;   
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);  
+  z-index: -100;
+  background-size: cover;
+}
+#cwnteer {
+	text-align: center;
+}
+#apDiv1 {
+	position: static;
+	left: 83px;
+	top: 209px;
+	width: 576px;
+	height: 262px;
+	z-index: 1;
+	color: #FFF;
+	font-size: 36px;
+}
+</style>
+
+</head>
+
+<body id="cwnteer">
+<div id="apDiv1">pruebas</div>
+<video src="video.mp4" type="video/mp4" preload autoplay muted="true" loop poster="Cargando.gif"></video>
+
+</body>
+</html>

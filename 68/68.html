@@ -1,0 +1,45 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Botón reproducir mp3</title>
+
+
+<style type="text/css">
+#boton {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+<audio id="audio" src="sound.mp3" autoplay loop></audio>
+
+<div align="center">
+  <input type="image" id="boton" value="Reproducir" src="pause.gif"  />
+</div>
+<script> 
+var isOn = false;
+
+function presionar() {
+  var audio = document.getElementById("audio");
+  var boton = document.getElementById("boton");
+  if (isOn) {
+    boton.src = "pause.gif";
+    audio.pause();
+  } else {
+    boton.src = "play.gif";
+    audio.play();
+  }
+  isOn = !isOn;
+}
+
+window.addEventListener("load", function(){
+  audio.play();
+  var boton = document.getElementById("boton");
+  boton.addEventListener("click", presionar, false);
+}, false);
+
+</script>
+</body>
+</html>

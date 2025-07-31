@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirección según Resolución de Pantalla</title>
+    <script>
+        // Obtener la resolución de pantalla con JavaScript
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        // Mostrar la resolución en la página
+        function mostrarResolucion() {
+            var resolucionElemento = document.getElementById("resolucion");
+            resolucionElemento.textContent = "Resolución de pantalla: " + screenWidth + "x" + screenHeight;
+        }
+
+        // Redirigir según la resolución de pantalla
+        function redirect() {
+            if (screenWidth >= 1024) {
+                // Redirigir a un enlace si es una pantalla de escritorio (resolución igual o mayor a 1024px)
+                window.location.href = 'pc.html';
+            } else if (screenWidth >= 1024 && screenWidth < 1340) {
+                // Redirigir a otro enlace si es una tablet (resolución entre 768px y 1023px)
+                window.location.href = 'tablet.html';
+            } else {
+                // Redirigir a otro enlace si es un dispositivo móvil (resolución menor a 768px)
+                window.location.href = 'movil.html';
+            }
+        }
+    </script>
+</head>
+<body onload="mostrarResolucion(); redirect();">
+    <p id="resolucion"></p>
+</body>
+</html>
+
+
