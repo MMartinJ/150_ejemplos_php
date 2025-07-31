@@ -1,4 +1,4 @@
-<?
+<?php
  // Completamos el vector con frases
  $vector = array(
  1 => "Nada nuevo hay bajo el sol, pero cuántas cosas viejas hay que no conocemos.",

@@ -1,26 +1,27 @@
-<HTML>
-<HEAD>
-<TITLE>Formulario de entrada de datos</TITLE>
-</HEAD>
-<BODY>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de entrada de datos</title>
+</head>
+<body>
+    <form method="post" action="resultado.php">
+        <p><strong>Introduce el texto:</strong><br>
+            <textarea name="text" cols="45" rows="5" wrap="soft"></textarea>
+        </p>
 
-<FORM METHOD="post" ACTION="resultado.php">
+        <p><strong>Funciones de Cadena:</strong><br>
+            <input type="radio" name="func" value="md5" checked> Obtener md5<br>
+            <input type="radio" name="func" value="strlen"> Obtener la longitud de la cadena<br>
+            <input type="radio" name="func" value="strrev"> Obtener cadena inversa<br>
+            <input type="radio" name="func" value="strtoupper"> Hacer la cadena en mayúsculas<br>
+            <input type="radio" name="func" value="strtolower"> Hacer la cadena en minúsculas<br>
+            <input type="radio" name="func" value="ucwords"> Hacer las primeras letras mayúsculas
+        </p>
 
-<P><strong>Introduce el texto:</strong><br>
-<TEXTAREA NAME="text" COLS=45 ROWS=5 WRAP=virtual></TEXTAREA>
-</p>
-
-<P><strong>Funciones de Cadena:</strong><br>
-<INPUT TYPE="radio" NAME="func" VALUE="md5" checked> Obtener md5<br>
-<INPUT TYPE="radio" NAME="func" VALUE="strlen"> Obtener la longitud de la cadena<br>
-<INPUT TYPE="radio" NAME="func" VALUE="strrev"> Obtener cadena Inversa<br>
-<INPUT TYPE="radio" NAME="func" VALUE="strtoupper"> Hacer la cadena en mayusculas<br>
-<INPUT TYPE="radio" NAME="func" VALUE="strtolower"> Hacer la cadena en minusculas<br>
-<INPUT TYPE="radio" NAME="func" VALUE="ucwords"> Hacer las primeras letras mayusculas</p>
-
-<P><INPUT TYPE="submit" NAME="submit" VALUE="Mostrar Resultados"></p>
-
-</FORM>
-
-</BODY>
-</HTML>
+        <p>
+            <input type="submit" name="submit" value="Mostrar Resultados">
+        </p>
+    </form>
+</body>
+</html>

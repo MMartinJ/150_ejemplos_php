@@ -1,60 +1,54 @@
-<?
-$timezone = "Europe/Madrid";// detecto la hora local
-date_default_timezone_set ($timezone);
-echo "Conatador: tiempo restante que queda para las 23:59:59 de hoy". "<BR>";
-$year = date("y");
-$month= date("m");
+<?php
+// filepath: c:\xampp\htdocs\Contenido_web_Los_150_mejores_ejemplos\25\25.php
+
+// Establece la zona horaria a Madrid
+date_default_timezone_set("Europe/Madrid");
+
+// Muestra mensaje inicial
+echo "Contador: tiempo restante que queda para las 23:59:59 de hoy<br>";
+
+// Obtiene la fecha y hora actual
+$year = date("Y"); // Año completo (ej: 2025)
+$month = date("m");
 $day = date("d");
-$hour = '23';
-$minute = '59';
-$second = '59';
-//Countdown Function
-function countdown($year, $month, $day, $hour, $minute, $second)
-{
-  global $return;
-  global $countdown_date;
-  $countdown_date = mktime($hour, $minute, $second, $month, $day, $year);
-  $today = time();
- $diff = $countdown_date - $today;
-  if ($diff < 0)$diff = 0;
-  $dl = floor($diff/60/60/24);
-  $hl = floor(($diff - $dl*60*60*24)/60/60);
-  $ml = floor(($diff - $dl*60*60*24 - $hl*60*60)/60);
-  $sl = floor(($diff - $dl*60*60*24 - $hl*60*60 - $ml*60));
-// OUTPUT
-////echo "Today's date ".date("F j, Y, g:i:s A")."<br/>";
-////echo "Countdown date ".date("F j, Y, g:i:s A",$countdown_date)."<br/>";
-////echo "\n<br>";
-$return = array($dl, $hl, $ml, $sl);
-return $return;
+$hour = 23;
+$minute = 59;
+$second = 59;
+
+// Función para calcular el tiempo restante hasta una fecha/hora dada
+function countdown($year, $month, $day, $hour, $minute, $second) {
+    $countdown_date = mktime($hour, $minute, $second, $month, $day, $year);
+    $now = time();
+    $diff = max(0, $countdown_date - $now); // No permite valores negativos
+
+    $days = floor($diff / 86400);
+    $hours = floor(($diff % 86400) / 3600);
+    $minutes = floor(($diff % 3600) / 60);
+    $seconds = $diff % 60;
+
+    // Devuelve un array con días, horas, minutos y segundos
+    return [$days, $hours, $minutes, $seconds];
 }
 
-countdown($year, $month, $day, $hour, $minute, $second);
-list($dl,$hl,$ml,$sl) = $return;
-// echo "Countdown ".$dl." days ".$hl." hours ".$ml." minutes ".$sl." seconds left"."\n<br>";
-//echo $hl." hours ".$ml." minutes ".$sl." seconds left"."\n<br>";
+// Calcula el tiempo restante
+//Esa línea de código en PHP está utilizando desestructuración de arrays con list() 
+//para asignar valores individuales a variables desde el resultado de la función countdown()
+list($dl, $hl, $ml, $sl) = countdown($year, $month, $day, $hour, $minute, $second);
 
- if ($hl == 1)$hl="01";
- if ($hl == 2)$hl="02";
- if ($hl == 3)$hl="03";
- if ($hl == 4)$hl="04";
- if ($hl == 5)$hl="05";
- if ($hl == 6)$hl="06";
- if ($hl == 7)$hl="07";
- if ($hl == 8)$hl="08";
- if ($hl == 9)$hl="09"; 
+// Formatea las horas, minutos y segundos con dos dígitos
+$hl = str_pad($hl, 2, "0", STR_PAD_LEFT);
+$ml = str_pad($ml, 2, "0", STR_PAD_LEFT);
+$sl = str_pad($sl, 2, "0", STR_PAD_LEFT);
 
-$fichero = fopen("tiempo.txt","w");
-$horas = "&mimensaje=".$hl."&";
-$minutos = "&minuts=".$ml."&";
-$segundos = "&segund=".$sl."&";
-// grabando los campos
-fputs($fichero, $horas."\n");
-fputs($fichero, $minutos."\n");
-fputs($fichero, $segundos."\n");
-//cerrando archivo
-fclose($fichero);
-echo "Horas " . $hl . " minuts " . $ml ." segundos " . $sl;
-echo "\n<br>"; // hace un retorno de carro para separar enunciados
-echo "El tiempo se ha guarado en el servidor para poder usarlo en otro momento, en el archivo (tiempo.txt)";
-?> 
+// Prepara los datos para guardar en el archivo
+$horas = "&mimensaje={$hl}&";
+$minutos = "&minuts={$ml}&";
+$segundos = "&segund={$sl}&";
+
+// Guarda los datos en el archivo tiempo.txt
+file_put_contents("tiempo.txt", $horas . "\n" . $minutos . "\n" . $segundos . "\n");
+
+// Muestra el resultado al usuario
+echo "Horas: $hl, minutos: $ml, segundos: $sl<br>";
+echo "El tiempo se ha guardado en el servidor para poder usarlo en otro momento, en el archivo (tiempo.txt)";
+?>
