@@ -1,15 +1,16 @@
 
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Crear cookie POST</title>
+    <meta charset="UTF-8">
+    <title>Crear cookie POST</title>
 </head>
-<form action="crear.php" method="post">
-  <!-- Tus elementos de formulario aquí -->
-  <input type="text" name="miVariable" value="Valor predeterminado">
-  <input type="submit" value="Enviar">
-</form>
-
 <body>
+    <form action="crear.php" method="post">
+        <!-- Campo de texto para enviar una variable por POST -->
+        <label for="miVariable">Introduce un valor:</label>
+        <input type="text" id="miVariable" name="miVariable" value="Valor predeterminado">
+        <input type="submit" value="Enviar">
+    </form>
 </body>
 </html>
