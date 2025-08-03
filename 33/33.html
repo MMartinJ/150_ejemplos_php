@@ -1,20 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Documento sin título</title>
+    <meta charset="UTF-8">
+    <title>Colores preferidos</title>
 </head>
-<form name="prueba" action="recibo.php" method="POST">
-         Cuales son tus colores preferidos?
-        <br>
-        Rojo <input type="checkbox" name="color_rojo" value="rojo" />
-        <br>
-        Azul <input type="checkbox" name="color_azul" value="azul" />
-        <br>
-        Verde <input type="checkbox" name="color_verde" value="verde" />
-        <br>
-        <input type="submit" value="Enviar" name="btn_colores" />
-    </form>
 <body>
+    <!--
+        Formulario para seleccionar colores preferidos.
+        Al enviar, los datos se envían por POST a recibo.php.
+    -->
+    <form name="prueba" action="recibo.php" method="post">
+        <p>¿Cuáles son tus colores preferidos?</p>
+        <label>
+            <input type="checkbox" name="color_rojo" value="rojo">
+            Rojo
+        </label><br>
+        <label>
+            <input type="checkbox" name="color_azul" value="azul">
+            Azul
+        </label><br>
+        <label>
+            <input type="checkbox" name="color_verde" value="verde">
+            Verde
+        </label><br>
+        <input type="submit" value="Enviar" name="btn_colores">
+    </form>
 </body>
 </html>
