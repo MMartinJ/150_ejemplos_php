@@ -6,11 +6,11 @@
 function saluda($a){
     echo $a .": Bienvenido a PHP .<BR>";
 }
-echo saluda("PEDRO");
+echo saluda("Marina");
 
 //**************************
 
-// ejemplo 2 con calculios
+// ejemplo 2 con calculos
 
 function media($a,$b){
     return($a+$b)/2;

@@ -4,6 +4,6 @@
 dentro del actual */
 
 echo "Hola mundo <br>";
-include("saludo.php"); // incluie el contenido del código archivo (saludo.php)
+include("saludo.php"); // incluye el contenido del código archivo (saludo.php)
 
 ?>

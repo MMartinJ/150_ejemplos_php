@@ -1,18 +1,19 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
- <html> 
+<!DOCTYPE html>
+ <html lang="es"> 
  <head> 
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
- <title>Combo selección múltiple</title> 
+ <meta charset="UTF-8"> 
+ <title>Combo seleccion multiple</title> 
  </head> 
  <body> 
- <h1>Combo selección múltiple</h1> 
+ <h1>Combo seleccion multiple</h1> 
 
  <form action="recibo.php" method="POST">   
  Nombre: <input type="text" name="nombre"><br>   
  Apellidos: <input type="text" name="apellidos"><br>   
  Email: <input type="text" name="email"> <br>   
  Cerveza: <br>   
- <select multiple name="cerveza[]">    
+ <label for="cerveza">Elige tus cervezas favoritas:</label><br>
+ <select multiple id="cerveza" name="cerveza[]" >    
  <option value="SanMiguel">San Miguel</option>    
  <option value="Mahou">Mahou</option>    
  <option value="Heineken">Heineken</option>    
@@ -21,7 +22,7 @@
  </select><br>   
  <input type="submit" value="Enviar datos!" > 
 </form>
- <em>[Utilizar Ctrl pulsado para hacer la selección múltiple]</em> 
+ <em>[Utilizar Ctrl pulsado para hacer la seleccion multiple]</em> 
  <br><br> 
  <hr> 
  </body> 

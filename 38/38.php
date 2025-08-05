@@ -9,8 +9,7 @@ $ciudad[] = "Cadiz";
 
 
 // Llamada a valores del array
-
-echo "Yo vivo en " . $ciudad[3] ;
+echo "Yo vivo en " . $ciudad[3];
 
 ?>
 
