@@ -1,4 +1,2 @@
-FECHA DE ALTA NUEVA: 03-08-23 -  12:42
 
-Nombre:		lop
-Apellidos:	alf del
+Fecha: 05-08-25, Hora:  18:12, Empresa: Acme, Nombre: Marina Martin

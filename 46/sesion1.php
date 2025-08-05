@@ -1,13 +1,13 @@
 <?php
- // Crear o retomar la sesi髇
+ // Crear o retomar la sesi贸n
  session_start();
 
- // Mostrar el nombre de la sesi髇 
- echo 'La sesi髇 actual se llama: '.session_name()."<br>"; 
+ // Mostrar el nombre de la sesi贸n 
+ echo 'La sesi贸n actual se llama: '.session_name()."<br>"; 
 
- // Mostrar el identificador de la sesi髇 
- echo 'La sesi髇 actual tiene este identificador: '.session_id()."<br>";
+ // Mostrar el identificador de la sesi贸n 
+ echo 'La sesi贸n actual tiene este identificador: '.session_id()."<br>";
 
 ?>
- <a href=sesion2.php>Ir a otra p醙ina</a><br>
- <a href=sesion3.php>Destruir sesi髇</a><br>
+ <a href=sesion2.php>Ir a otra p谩gina</a><br>
+ <a href=sesion3.php>Destruir sesi贸n</a><br>

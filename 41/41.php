@@ -28,6 +28,14 @@ if (isset($_POST['empresa'])) {
     $empresa = $id_empresa;
     $id_nombre = $_POST['nombre'];
     $nombre = $id_nombre;
+    
+    // Creamos la cadena de datos a guardar
+    $datos = "Fecha: $fecha, Hora: $hora, Empresa: $empresa, Nombre: $nombre\n";
+
+    // Escribir en el archivo (modo 'a' = añadir al final)
+    $archivo = fopen("datos.txt", "a");
+    fwrite($archivo, $datos);
+    fclose($archivo);
 
     // Mostramos el mensaje
     echo "<font face='verdana' size='2' color='#FF8C00'>Gracias $nombre, se han recibido correctamente los datos.</font><br>";

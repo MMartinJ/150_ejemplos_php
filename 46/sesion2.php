@@ -1,12 +1,12 @@
 <?php
- //  Crear o retomar la sesi髇
+ //  Crear o retomar la sesi贸n
  session_start();
  
- // Mostrar el nombre de la sesi髇 
- echo 'La sesi髇 actual se llama: '.session_name()."<br>"; 
+ // Mostrar el nombre de la sesi贸n 
+ echo 'La sesi贸n actual se llama: '.session_name()."<br>"; 
 
- // Mostrar el identificador de la sesi髇 
- echo 'La sesi髇 actual tiene este identificador: '.session_id()."<br>";
+ // Mostrar el identificador de la sesi贸n 
+ echo 'La sesi贸n actual tiene este identificador: '.session_id()."<br>";
  
 ?>
- <a href=55.php>Volver</a><br>
+ <a href=sesion1.php>Volver</a><br>

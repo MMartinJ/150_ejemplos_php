@@ -1,10 +1,25 @@
 <?php
- // Crea o retoma la sesi髇
- session_start(); 
+session_start(); 
 
- // Destruir la sesi髇
- setcookie(session_name(),"");
- session_destroy();
- echo "Sesi髇 destru韉a <br>";
+// Eliminar todos los datos de la sesi贸n
+$_SESSION = [];
+
+// Eliminar la cookie de sesi贸n (隆fij谩ndola con tiempo pasado!)
+
+if (ini_get("session.use_cookies")) {
+    // Obtener los par谩metros de la cookie de sesi贸n
+    $params = session_get_cookie_params();
+    // Eliminar la cookie de sesi贸n
+    // (fij谩ndola con tiempo pasado)
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Destruir la sesi贸n
+session_destroy();
+
+echo "Sesi贸n destruida <br>";
 ?>
- <a href=sesion1.php>Volver</a>
+<a href="sesion1.php">Volver</a>
