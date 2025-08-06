@@ -1,55 +1,49 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<style type="text/css">
-.rojo {
-	color: #F00;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Formulario con autolectura</title>
+  <style>
+    .rojo {
+      color: #F00;
+    }
+    .campo {
+      margin-bottom: 10px;
+    }
+    .boton {
+      padding: 5px 10px;
+    }
+  </style>
 </head>
-
 <body>
 
-<form name="form1" method="post" action="<?=$_SERVER['PHP_SELF']?>">
-<p>Este texto debe verse en todo momento para poder verificar la autolectura dentro de un mismo <span class="rojo">archivo PHP</span></p>
-<p>Empresa: </font> <INPUT CLASS="campo" NAME="empresa" size="40">
-  Nombre y Apellidos: </font> <INPUT CLASS="campo" NAME="nombre" size="40">
-  <font face="Comic Sans MS">
-  <INPUT CLASS="botón" TYPE="Submit" VALUE="Enviar">
-</font></p>
+  <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+    <p>Este texto debe verse en todo momento para poder verificar la autolectura dentro de un mismo <span class="rojo">archivo PHP</span></p>
+    
+    <p>
+      Empresa: <input class="campo" name="empresa" size="40" required><br>
+      Nombre y Apellidos: <input class="campo" name="nombre" size="40" required><br>
+      <input class="boton" type="submit" value="Enviar">
+    </p>
+  </form>
 
-<?php
+  <?php
+  date_default_timezone_set('Europe/Madrid'); // Ajusta la zona horaria si es necesario
+  $hora = date("H:i:s");
 
-  // Fecha de alta
-  //$tiempo=time();
-//  $fecha=date("d-m-y",$tiempo);
-  $hora = date(" H:i:s",time());
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $empresa = htmlspecialchars($_POST['empresa'] ?? '');
+      $nombre = htmlspecialchars($_POST['nombre'] ?? '');
 
-
-  // verificamos si se envio la variable, y saludamos LAS TRANSFORMA DE HTML A PHP
-  if (isset($_POST['empresa']))
-  { 
-  $id_empresa = $_POST['empresa'];
-  $empresa =$id_empresa;
-  $id_nombre = $_POST['nombre'];
-  $nombre =$id_nombre;
-
-  // Mostramos el mensaje
-  echo "<BR>";
-  echo "<font face='verdana' size='2' color='#FF8C00'>Gracias ".$empresa ." se ha  guardado correctamente los datos"."</font>"."	<BR>";	
-  echo "Empresa: ".$empresa."<BR>"."Nombre y Apellidos: ".  $nombre;
+      echo "<p style='color:#FF8C00; font-family:Verdana; font-size:14px;'>✅ Gracias <strong>$nombre</strong>, se han guardado correctamente los datos.</p>";
+      echo "<p>Empresa: $empresa<br>Nombre y Apellidos: $nombre</p>";
   }
-echo "<BR>".$hora;
 
-// Se inicia una actualizacion transcurrido 5 segundos.
-  header( "refresh:20; url=54.php" ); 
+  echo "<p>Hora actual: $hora</p>";
 
-//<!-- El siguiente script refrescara la pagina transcurridos los 5 segundos. -->
-//<meta http-equiv="refresh" content="5"/>
-
-?>
-
-
-
-</BODY>
-</FROM>
-</HTML>
+  // Redirección automática después de 20 segundos
+  header("Refresh:20; url=54.php");
+  ?>
+  
+</body>
+</html>

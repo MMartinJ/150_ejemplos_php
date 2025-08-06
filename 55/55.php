@@ -20,10 +20,12 @@
 <body>
 <?php
 // obtenemos la ruta a revisar, y la ruta anterior para volver...
-if($_GET["path"])
+$path = isset($_GET["path"]) ? $_GET["path"] : "*";
+
+if($path)
 {
-	$path=$_GET["path"];
-	$back=implode("/",explode("/",$_GET["path"],-2));
+	
+	$back=implode("/",explode("/",$path,-2));
 	if($back)
 		$back.="/*";
 	else
@@ -61,16 +63,18 @@ if($_GET["path"])
 		{
 			$folder+=1;
 			// mostramos la carpeta y permitimos pulsar sobre la misma
+			$parts = explode("/", $filename);
 			echo "<div class='directory group'>
-				<a href='?path=".$filename."/*' class='name'>".end(explode("/",$filename))."</a>
+				<a href='?path=".$filename."/*' class='name'>".end($parts)."</a>
 				<div class='mime'>(".$fileEncoding.")</div>
 			</div>";
 		}else{
 			$file+=1;
 			// mostramos la información del archivo
+			$parts = explode("/", $filename);
 			echo "<div class='group'>
 				<div class='size'>".number_format(filesize($filename)/1024,2,",",".")." Kb</div>
-				<div class='name'>".end(explode("/",$filename))."</div>
+				<div class='name'>".end($parts)."</div>
 				<div class='mime'>".$fileMime." (".$fileEncoding.")</div>
 			</div>";
 		}
