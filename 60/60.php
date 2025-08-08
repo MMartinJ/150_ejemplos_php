@@ -1,4 +1,4 @@
-<?
+<?php
 if (file_exists("mifichero.txt")){ 
    echo "El fichero existe."; 
    $reffichero = fopen("mifichero.txt", "a"); 
