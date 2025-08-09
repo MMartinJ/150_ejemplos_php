@@ -1,11 +1,35 @@
 <?php
-// Configura la codificación de caracteres en la respuesta HTTP
 header('Content-Type: text/html; charset=UTF-8');
 
-$web="https://www.google.es"; //ejemplo de web
+$web = "https://www.google.es"; // Ejemplo de web
+$asunto = "Te envío información importante";
+$cuerpo = "¡Hola! Te envío este contenido porque creo que te puede interesar y pensé en compartirlo contigo: " . $web;
 
-echo "Botón compartir correo <br>";
-
-echo '<a href="mailto:?subject=Te envio información importante&body=¡Hola! Te envío este contenido porque creo que te puede interesar y pensé en compartirlo contigo: '.$web.'" title="Compartir"><img src="compartir.png" width="31px" height="31px" style="float: left; margin-left: 35px;"></a>';
-
+// Codificamos los parámetros para que funcionen correctamente en la URL
+$asuntoCodificado = rawurlencode($asunto);
+$cuerpoCodificado = rawurlencode($cuerpo);
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Compartir por correo</title>
+    <style>
+        .email-btn {
+            display: inline-block;
+            margin: 10px 0 0 35px;
+        }
+        .email-btn img {
+            width: 31px;
+            height: 31px;
+        }
+    </style>
+</head>
+<body>
+    <p>Botón compartir correo:</p>
+    <a class="email-btn" href="mailto:?subject=<?= $asuntoCodificado ?>&body=<?= $cuerpoCodificado ?>" title="Compartir por correo">
+        <img src="compartir.png" alt="Compartir por correo">
+    </a>
+</body>
+</html>
