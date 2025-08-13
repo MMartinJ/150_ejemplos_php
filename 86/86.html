@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>onclick con poup</title>
     <!-- Aquí puedes incluir tus enlaces a archivos CSS y otras etiquetas de encabezado -->
 </head>
@@ -9,8 +10,9 @@
     <!-- Contenido de tu página -->
     
     <form id="myForm" action="procesar_formulario.php" method="post">
-        <!-- Tus campos de formulario aquí -->
-
+        <!-- input oculto para enviar datos al servidor -->
+        <input type="hidden" name="accion" value="activar">
+        <!-- Botón que activa el evento onclick -->
         <button type="submit" onclick="mostrarMensaje(event)">Activar perfil</button>
     </form>
 
@@ -18,10 +20,10 @@
         function mostrarMensaje(event) {
             event.preventDefault(); // Evita el envío del formulario por defecto
 
-            var confirmacion = confirm('¿Estás seguro de que deseas activar tu perfil?');
+            var confirmacion = confirm('¿Estás seguro/a de que deseas activar tu perfil?');
             if (confirmacion) {
                 event.target.form.submit(); // Envía el formulario
-                console.log('Perfil activado');
+                
             } else {
                 console.log('Activación de perfil cancelada');
                 return; // Sale de la función sin hacer nada adicional

@@ -1,29 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Div que aparece y desaparece en 2 segundos</title>
-<style>
-#miDiv {
-	background-color: #FFF;
-	text-align: center;
-	line-height: 200px;
-	display: block;
-}
-</style>
+    <!-- Define la codificación de caracteres para que soporte acentos y caracteres especiales -->
+    <meta charset="UTF-8">
+
+    <!-- Hace que la página sea responsiva en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparecerá en la pestaña del navegador -->
+    <title>Div que aparece y desaparece en 2 segundos</title>
+
+    <style>
+    /* Selecciona el elemento con id="miDiv" */
+    #miDiv {
+        background-color: #FFF;       /* Fondo blanco para el div */
+        text-align: center;           /* Centra horizontalmente el contenido */
+        line-height: 200px;           /* Ajusta la altura de línea para centrar verticalmente */
+        display: block;               /* Asegura que el div sea un bloque visible */
+    }
+    </style>
 </head>
 
 <body>
-<div id="miDiv"> <img src="cargando-loading-033.gif" width="50" height="50" alt="Imagen 1"></div>
+    <!--
+        Contenedor de carga:
+        • id="miDiv" para referenciarlo desde JavaScript
+        • Dentro tienes un GIF de "cargando"
+    -->
+    <div id="miDiv">
+        <img
+            src="cargando-loading-033.gif"
+            width="50"
+            height="50"
+            alt="Imagen de carga"
+        >
+    </div>
 </body>
 
- <script>
-var miDiv = document.getElementById("miDiv");
+<script>
+    // Obtiene la referencia al elemento <div> con id="miDiv"
+    var miDiv = document.getElementById("miDiv");
 
-setTimeout(function() {
-  miDiv.style.display = "none";
-}, 2000);
-
- </script>
+    // Programa la ejecución de la función anónima después de 2000 milisegundos (2 segundos)
+    setTimeout(function() {
+        // Cambia la propiedad display a "none" para ocultar el div por completo
+        miDiv.style.display = "none";
+    }, 2000);
+</script>
 
 </html>

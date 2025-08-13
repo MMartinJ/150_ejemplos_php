@@ -1,20 +1,27 @@
 <?php
-$filename = 'imagenes/imagen.jpg'; // Ruta y nombre del archivo que deseas descargar
+// Archivo: descargar.php
 
-if (file_exists($filename)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename=' . basename($filename));
-    header('Content-Transfer-Encoding: binary');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($filename));
-    ob_clean();
-    flush();
-    readfile($filename);
-    exit;
-} else {
-    echo 'El archivo no existe.';
+$archivoId = $_GET['id']; // Puede ser un hash o nombre simbólico
+$archivos = [
+    'abc123' => ['ruta' => './imagenes/imagen.jpg', 'descarga' => 'imagen.jpg']
+];
+
+if (!isset($archivos[$archivoId])) {
+    http_response_code(404);
+    exit("Archivo no encontrado.");
 }
+
+$ruta = $archivos[$archivoId]['ruta'];
+$nombreDescarga = $archivos[$archivoId]['descarga'];
+
+if (!file_exists($ruta)) {
+    http_response_code(404);
+    exit("Archivo no disponible.");
+}
+
+header("Content-Type: image/jpeg");
+header("Content-Disposition: attachment; filename=\"$nombreDescarga\"");
+header("Content-Length: " . filesize($ruta));
+flush();
+readfile($ruta);
 ?>
