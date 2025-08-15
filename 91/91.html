@@ -1,70 +1,72 @@
 <!DOCTYPE html>
-<html>
-<style>
-a.tooltip{
-    position:relative;
-    }
-    a.tooltip:hover{
-    text-decoration:none;
-    }
-    a.tooltip:after{
-    content: attr(tip);
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:90%;
-    line-height:1.2em;
-    color:#fff;
-    width:200px;
-    padding:5px 10px;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    background:#c00d3f;
-    background:-webkit-linear-gradient(#c00d3f, #7b0a2a);
-    background:-moz-linear-gradient(#c00d3f, #7b0a2a);
-    background:-o-linear-gradient(#c00d3f, #7b0a2a);
-    background:-ms-linear-gradient(#c00d3f, #7b0a2a);
-    background:linear-gradient(#c00d3f, #7b0a2a);
-    -moz-box-shadow: 3px 3px 4px rgba(0,0,0, .65);
-    -webkit-box-shadow: 3px 3px 4px rgba(0,0,0, .65);
-    box-shadow: 3px 3px 4px rgba(0,0,0, .65);
-    position:absolute;
-    top:27px;
-    left:-10px;
-    display:none;
-    }
-    a.tooltip:before{
-    z-index:1000;
-    position:absolute;
-    content:"";
-    top:15px;
-    left:0px;
-    border-right:7px transparent solid;
-    border-left:7px transparent solid;
-    display:none;
-    }
-    a.tooltip:hover{
-    z-index:1000;
-    position:relative;
-    color:#8325f7;
-    }
-    a.tooltip:hover:after{
-    display:block;
-    }
-    a.tooltip:hover:before{
-    display:block;
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Tooltip</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background: #f5f5f5;
     }
 
+    a.tooltip {
+      position: relative;
+      color: #8325f7;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-</style>
-<body style="text-align:center;">
+    /* Contenido del tooltip */
+    a.tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 130%;
+      background: linear-gradient(#c00d3f, #7b0a2a);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: normal;
+      width: 200px;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+      font-size: 0.9rem;
+      line-height: 1.2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-<h2>Tooltip</h2>
-<p>Mueve el cursor para que aparezca el tooltips:</p>
+    /* Flechita */
+    a.tooltip::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 120%;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent #c00d3f transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-
-<p><a class="tooltip" href="#" tip="Mensaje del tooltip que quieras poner">Ejemplo de tooltip</p>
-
+    /* Mostrar en hover */
+    a.tooltip:hover::after,
+    a.tooltip:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>Tooltip</h2>
+    <p>Mueve el cursor sobre el enlace para ver el tooltip:</p>
+    <p><a class="tooltip" href="#" data-tip="Mensaje del tooltip que quieras poner" aria-label="Información adicional">Ejemplo de tooltip</a></p>
+  </main>
 </body>
-</html>
-
 </html>

@@ -1,41 +1,129 @@
-<html> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejemplo modal simple</title>
+<style>
+  /* Estilos básicos */
+  body { 
+    font-family: sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    height: 80vh;/* 80% de la altura de la ventana */
+    max-height: 80vh;            /* asegura que no crezca más del 80% */
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  dialog::backdrop {
+    background: rgba(0,0,0,0.5);
+  }
+  button { margin: 5px; 
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600; 
+}
+  button:hover { 
+    background-color: #2980b9; 
+  }
+  menu {
+  display: flex;
 
-<head> 
-<title>Permite continuar tras aceptar</title> 
-<script language="JavaScript"> 
+  justify-content: center; /* centra horizontalmente */
+  gap: 10px;               /* espacio entre botones */
+  margin-top: 1rem;        /* separación respecto al contenido */
+  padding: 0;              /* quita el padding por defecto del menu */
+}
+h1 {
+  
+  display: inline-flex;
+}
+div {
+  display: inline-flex;
+  
+}
 
-var agree=confirm ("Este script te permite avisar a los visitantes sobre el contenido de la pagina aceptándolo o rechzándolo.\n"+  
+</style>
+</head>
+<body>
 
-"Si no estas de acuerdo pulsa Cancelar\n"+ 
+<h1>Contenido de la página</h1>
+<div>El contenido se ve normalmente, pero al cargar se abre un modal.</div>
 
-"\n"+ 
+<dialog id="miModal">
+  <h2>Aviso</h2>
+  <!-- Aquí van todos los párrafos y avisos -->
+      <p>Este sitio puede incluir contenidos no aptos para todos los públicos.</p>
+      <p>Si no estás de acuerdo, pulsa Cancelar.</p>
+      <p>Si pulsas Aceptar, verás el contenido sin restricciones.</p>
+      <p>Por favor, asegúrate de que tienes la edad adecuada para continuar.</p>
+      <p>Al aceptar, confirmas que entiendes y aceptas los términos.</p>
+      <p>Si tienes dudas, consulta nuestra <a href="https://www.ejemplo.com/aviso" target="_blank">política de contenido</a>.</p>
+      <p>Gracias por tu comprensión y colaboración.</p>
+      <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+      <p>Recuerda que puedes volver atrás en cualquier momento.</p>
+      <p>Tu privacidad y seguridad son importantes para nosotros.</p>
+      <p>Al continuar, aceptas nuestras <a href="https://www.ejemplo.com/terminos" target="_blank">condiciones de uso</a>.</p>
+      <p>Si no estás seguro, te recomendamos que consultes con un adulto.</p>
+      <p>Este aviso es para protegerte y asegurarnos de que estás informado.</p>
+      <p>Si tienes menos de 18 años, por favor, consulta con tus padres o tutores.</p>
+      <p>Al pulsar Aceptar, confirmas que has leído y entendido este aviso.</p>
+      <p>Si decides no continuar, puedes cerrar esta ventana.</p>
+      <p>Este sitio puede incluir contenidos no aptos para todos los públicos.</p>
+      <p>Si no estás de acuerdo, pulsa Cancelar.</p>
+      <p>Si pulsas Aceptar, verás el contenido sin restricciones.</p>
+      <p>Por favor, asegúrate de que tienes la edad adecuada para continuar.</p>
+      <p>Al aceptar, confirmas que entiendes y aceptas los términos.</p>
+      <p>Si tienes dudas, consulta nuestra <a href="https://www.ejemplo.com/aviso" target="_blank">política de contenido</a>.</p>
+      <p>Gracias por tu comprensión y colaboración.</p>
+      <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+      <p>Recuerda que puedes volver atrás en cualquier momento.</p>
+      <p>Tu privacidad y seguridad son importantes para nosotros.</p>
+      <p>Al continuar, aceptas nuestras <a href="https://www.ejemplo.com/terminos" target="_blank">condiciones de uso</a>.</p>
+      <p>Si no estás seguro, te recomendamos que consultes con un adulto.</p>
+      <p>Este aviso es para protegerte y asegurarnos de que estás informado.</p>
+      <p>Si tienes menos de 18 años, por favor, consulta con tus padres o tutores.</p>
+      <p>Al pulsar Aceptar, confirmas que has leído y entendido este aviso.</p>
+      <p>Si decides no continuar, puedes cerrar esta ventana.</p>
+      <!-- ... resto del texto de aviso -->
+  <menu>
+    <button id="cancelar">Cancelar</button>
+    <button id="aceptar">Aceptar</button>
+  </menu>
+</dialog>
 
-"Si tu pagina tiene contenidos no aptos para todos los publicos este es un script ideal\n"+  
+<script>
+  const modal = document.getElementById('miModal');
+  const btnAceptar = document.getElementById('aceptar');
+  const btnCancelar = document.getElementById('cancelar');
 
-"ya que evitas asi que entre quien no quiere ver tales contenicos.\n"+ 
+  // Mostrar el modal al cargar
+  modal.showModal();
 
-"\n"+ 
+  btnAceptar.addEventListener('click', () => {
+    modal.close(); // Simplemente cierra el modal
+  });
 
-"Puedes decir tanto como quieras.\n"+ 
-
-"Pero procura no aburrir contando toda una historia de la Roma Imperial.\n"+ 
-
-"\n"+ 
-
-"Si pulsas en ACEPTAR es por que aceptas el contenido.\n"+ 
-
-"Si pulsas CANCELAR seras enviado a una web apta para todos los publicos."); 
-
-if (agree)
-    window.location.href = "https://www.yahoo.com";
-else
-    window.location.href = "https://www.google.es";
+  btnCancelar.addEventListener('click', () => {
+    window.location.href = "https://www.google.es"; // Redirige
+  });
 </script>
-</head> 
 
-<body> 
-<p><a href="http://www.aprendephp.com">www.aprendephp.com</a></p> 
-</body> 
-
-</html> 
-
+</body>
+</html>

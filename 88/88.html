@@ -1,16 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mostrar div oculto</title>
 </head>
 
 <body>
 <!-- Boton para mostrar/ocultar el div -->
-<button type="button" onclick="mostrarOcultarDiv()">Activar perfil</button>
+<button type="button" id="boton" onclick="mostrarOcultarDiv()">Mostrar Mensaje</button>
 
 <div id="mensaje" style="display: none; color: orange;">
   <br>
-  Subiendo archivos... espera un momento.
+  Este es un mensaje oculto que se muestra al hacer clic en el botón.
 </div>
 
 <script>
@@ -18,8 +20,11 @@
     var mensajeDiv = document.getElementById("mensaje");
     if (mensajeDiv.style.display === "none") {
       mensajeDiv.style.display = "block";
+      document.getElementById("boton").innerText = "Ocultar Mensaje";
     } else {
       mensajeDiv.style.display = "none";
+      document.getElementById("boton").innerText = "Mostrar Mensaje";
+      
     }
   }
 </script>

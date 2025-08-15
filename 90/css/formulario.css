@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+/* ==== Estilos base y tipografía ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Centrar horizontal */
+  align-items: center;     /* Centrar vertical */
+  background: #eaeaea;
+  font-family: 'Quicksand', 'Segoe UI', sans-serif;
+  padding: 1rem;
+}
+
+/* ==== Contenedor del formulario ==== */
+.form-container {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 350px;
+}
+
+/* ==== Título ==== */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* ==== Etiquetas ==== */
+.form-container label {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* ==== Campos de entrada ==== */
+.form-container input[type="text"],
+.form-container textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* ==== Área de texto ==== */
+.form-container textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ==== Botón ==== */
+.form-container button[type="submit"] {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 0 auto; /* Centrado horizontal */
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.2rem;
+  }
+  .form-container h2 {
+    font-size: 1.3rem;
+  }
+  .form-container button[type="submit"] {
+    width: 100%; /* Botón ocupa todo el ancho en móvil */
+  }
+}
