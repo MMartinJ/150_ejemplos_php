@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulación IPN PayPal</title>
+</head>
+<body>
+  <h2>Simular notificación IPN</h2>
+  <form action="96.php" method="post">
+    <label>Item Name:
+      <input type="text" name="item_name" value="Prueba">
+    </label><br><br>
+
+    <label>Item Number:
+      <input type="text" name="item_number" value="001">
+    </label><br><br>
+
+    <label>Payment Status:
+      <input type="text" name="payment_status" value="Completed">
+    </label><br><br>
+
+    <label>Monto:
+      <input type="text" name="mc_gross" value="10.00">
+    </label><br><br>
+
+    <label>Moneda:
+      <input type="text" name="mc_currency" value="EUR">
+    </label><br><br>
+
+    <label>Txn ID:
+      <input type="text" name="txn_id" value="FAKE123">
+    </label><br><br>
+
+    <label>Receiver Email:
+      <input type="email" name="receiver_email" value="vendedor@ejemplo.com">
+    </label><br><br>
+
+    <label>Payer Email:
+      <input type="email" name="payer_email" value="cliente@ejemplo.com">
+    </label><br><br>
+
+    <label>Custom:
+      <input type="text" name="custom" value="TEST123">
+    </label><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>
