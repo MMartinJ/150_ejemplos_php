@@ -1,10 +1,9 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <title>Botón reproducir mp3</title>
-
-
+<!-- css para darle diseño-->
 <style type="text/css">
 #boton {
 	text-align: center;
@@ -15,9 +14,10 @@
 <body>
 <audio id="audio" src="sound.mp3" autoplay loop></audio>
 
-<div align="center">
-  <input type="image" id="boton" value="Reproducir" src="pause.gif"  />
-</div>
+<button id="boton">
+  <img src="pause.gif" alt="Reproducir/Pausar">
+</button>
+
 <script> 
 var isOn = false;
 
@@ -37,6 +37,7 @@ function presionar() {
 window.addEventListener("load", function(){
   audio.play();
   var boton = document.getElementById("boton");
+  
   boton.addEventListener("click", presionar, false);
 }, false);
 

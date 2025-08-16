@@ -1,5 +1,5 @@
 ﻿<? 
-$facebook="http://www.facebook.es";
+$google="http://www.facebook.es";
 ?> 
 
-<a href="<?php echo $facebook; ?>">Ver mi Pedido</a>
+<a href="<?= $google; ?>">Ver mi Pedido</a>

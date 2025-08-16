@@ -1,10 +1,10 @@
 <?php 
-//vemos si el usuario y contraseña es váildo 
+//vemos si el usuario y contraseÃ±aa es vÃ¡ildo 
 if ($_POST["usuario"] == "entrar" && $_POST["contrasena"] == "qwerty"){ 
-    //usuario y contraseña válidos 
+    //usuario y contraseÃ±a vÃ¡lidos 
     //defino una sesion y guardo datos 
     session_start(); 
-    $_SESSION["autentificado"] = "SI"; 
+    $_SESSION["autentificado"] = "SI";
     header ("Location: aplicacion.php"); 
 }else { 
     //si no existe le mando otra vez a la portada 

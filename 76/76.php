@@ -1,5 +1,5 @@
 ﻿
 <?php 
-$facebook="http://www.facebook.es";
+$google="https://www.google.com";
 ?> 
-<a href="<?php echo $facebook; ?>"><img src="lupa.JPG" /></a>
+<a href="<?= $google; ?>"><img src="lupa.JPG" /></a>

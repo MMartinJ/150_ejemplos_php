@@ -1,37 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+  <!-- Define la codificación de caracteres para que los acentos, símbolos, etc., se vean correctamente -->
+  <meta charset="UTF-8">
 
-<!--<Animación efecto zoom en la cifra de lo recaudado-->
-<style>
-@keyframes miAnimacion {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-#apDiv1 {
-	position: absolute;
-	left: 403px;
-	top: 255px;
-	width: 590px;
-	height: 126px;
-	z-index: 1;
-	alignment-adjust: central;
-}
-</style>
+  <!-- Título de la página que aparece en la pestaña del navegador -->
+  <title>Animación Zoom</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Animación Zoom</title>
+  <!-- Estilos CSS internos -->
+  <style>
+    /* Declaración de una animación llamada 'miAnimacion' que hace un efecto de zoom */
+    @keyframes miAnimacion {
+      0% {
+        transform: scale(1);       /* Tamaño normal */
+      }
+      50% {
+        transform: scale(1.2);     /* Aumenta el tamaño al 120% */
+      }
+      100% {
+        transform: scale(1);       /* Vuelve al tamaño original */
+      }
+    }
+
+    /* Estilo aplicado al contenedor con ID 'apDiv1' */
+    #apDiv1 {
+      position: absolute;          /* Posiciona el div en una ubicación específica en la pantalla */
+      left: 403px;                 /* Distancia desde el borde izquierdo */
+      top: 255px;                  /* Distancia desde el borde superior */
+      width: 590px;                /* Ancho del contenedor */
+      height: 126px;               /* Alto del contenedor */
+      z-index: 1;                  /* Prioridad de superposición sobre otros elementos */
+      
+      
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="apDiv1"> <span style="display: block; font-family: itim; margin: 0 auto; font-size: 50px; color: grey; animation: miAnimacion 1s infinite; alignment-adjust: central;">10,75€</span>'</div>
-
+  <!-- Contenedor con ID 'apDiv1' que contiene el número animado -->
+  <div id="apDiv1">
+    <span
+      style="
+        display: block;             /* Hace que el <span> ocupe todo el ancho disponible */
+        font-family: itim;         /* Usa la fuente llamada 'itim' (deberías cargarla con Google Fonts si no está instalada) */
+        margin: 0 auto;            /* Centra el texto horizontalmente dentro del div */
+        font-size: 50px;           /* Tamaño grande de letra para destacar la cifra */
+        color: grey;               /* Color del texto */
+        animation: miAnimacion 1s infinite; /* Aplica la animación definida anteriormente de forma infinita */
+        
+      ">
+      10,75€
+    </span>
+  </div>
 
 </body>
 </html>
