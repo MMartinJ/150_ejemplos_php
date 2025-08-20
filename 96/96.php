@@ -9,6 +9,10 @@
 header('HTTP/1.1 200 OK');
 header("Content-Security-Policy: default-src 'self'");
 
+// STEP 1 - Log the IPN data to a file for debugging purposes
+// This is useful to see what PayPal is sending us, and to check that the data
+file_put_contents(__DIR__.'/ipn_debug.log', date('c')." ".print_r($_POST, true)."\n", FILE_APPEND);
+
 // STEP 2 - create the response we need to send back to PayPal for them to confirm that it's legit
 
 $resp = 'cmd=_notify-validate';
@@ -43,28 +47,6 @@ fputcsv($archivo, explode(",", $linea), ";");
 fclose($archivo);
 
 
-
-
-// Save the data to a CSV file
-
-//$csv_file = 'paypal_data.csv';
-//$csv_handler = fopen($csv_file, 'a');
-
-//$csv_data = array(
-//    $item_name,
-//    $item_number,
-//    $payment_status,
-//    $payment_amount,
-//    $payment_currency,
-//    $txn_id,
-//    $receiver_email,
-//    $payer_email,
-//    $record_id
-//);
-
-//fputcsv($csv_handler, $csv_data);
-
-//fclose($csv_handler);
 
 // STEP 4 - Get the HTTP header into a variable and send back the data we received so that PayPal can confirm it's genuine
 
