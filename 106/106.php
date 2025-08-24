@@ -1,5 +1,7 @@
-
 <?php
+//106.php
+// Redimensionar imagen jpg con PHP
+// Cambia el tamaño de una imagen jpg y la guarda en un nuevo archivo
 $origen = "logos/logo.jpg";
 $destino = "logos/logonuevo.jpg";
 $destino_temporal = tempnam("tmp/", "tmp");
@@ -22,5 +24,6 @@ function redimensionar_jpeg($img_original, $img_nueva, $img_nueva_anchura, $img_
     // guardar la nueva imagen redimensionada donde se indica en $img_nueva
     imagejpeg($thumb, $img_nueva, $img_nueva_calidad);
     imagedestroy($img);
+    imagedestroy($thumb);
 }
 ?>

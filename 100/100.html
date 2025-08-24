@@ -1,11 +1,18 @@
+<html lang="es">
 
-<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Incrustar pdf en web</title>
+    <meta charset="UTF-8">
+    <title>Incrustar pdf en web</title>
 </head>
 
 <body>
-<iframe src="libro.pdf" style="width:500px; height:375px;" frameborder="0"></iframe>
+    <h1>Incrustar pdf en web</h1>
+
+    <p>Ejemplo de incrustar un archivo PDF en una página web usando la etiqueta <code>&lt;object&gt;</code>.</p>
+<object data="libro.pdf" type="application/pdf" width="500" height="375">
+    <p>Tu navegador no soporta PDF embebido. <a href="libro.pdf">Descargar PDF</a></p>
+</object>
+
 </body>
+
 </html>
