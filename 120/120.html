@@ -1,76 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Grabar video y descargar enlace</title>
   <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+  <style>
+    video {
+      max-width: 100%;
+      background: #000;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
-  <video id="videoElement" width="100%" height="100%" autoplay></video>
+
+  <!-- Vista previa del vídeo -->
+  <video id="videoElement" autoplay playsinline></video>
+
+  <!-- Botones -->
   <button id="startButton">Iniciar Grabación</button>
-  <button id="stopButton">Detener Grabación</button>
+  <button id="stopButton" disabled>Detener Grabación</button>
+
+  <!-- Enlace de descarga -->
+  <div id="downloadSection"></div>
 
   <script>
-    var videoElement = document.getElementById('videoElement');
-    var startButton = document.getElementById('startButton');
-    var stopButton = document.getElementById('stopButton');
-    var recordRTC;
-    var mediaStream;
+    const videoElement = document.getElementById('videoElement');
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    const downloadSection = document.getElementById('downloadSection');
 
-    startButton.addEventListener('click', function() {
-      var constraints = { video: { facingMode: 'environment' }, audio: true };
+    let recordRTC;
+    let mediaStream;
 
-      navigator.mediaDevices.getUserMedia(constraints)
-        .then(function(stream) {
-          videoElement.srcObject = stream;
-          mediaStream = stream;
-          recordRTC = RecordRTC(stream, {
-            type: 'video'
-          });
-
-          recordRTC.startRecording();
-
-          startButton.disabled = true;
-          stopButton.disabled = false;
-        })
-        .catch(function(error) {
-          console.error('Error al acceder a la cámara: ', error);
+    // 1️⃣ Al cargar la página, pedimos permiso y mostramos la cámara
+    window.addEventListener('load', async () => {
+      try {
+        // Pedimos acceso a cámara y micrófono
+        mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }, // cámara trasera si está disponible
+          audio: true
         });
+
+        // Mostramos la vista previa
+        videoElement.srcObject = mediaStream;
+
+      } catch (error) {
+        console.error('Error al acceder a la cámara/micrófono:', error);
+      }
     });
 
-    stopButton.addEventListener('click', function() {
-      recordRTC.stopRecording(function() {
-        var blob = recordRTC.getBlob();
-        var videoURL = URL.createObjectURL(blob);
+    // 2️⃣ Al pulsar "Iniciar Grabación"
+    startButton.addEventListener('click', () => {
+      if (!mediaStream) {
+        console.error('No hay acceso a la cámara/micrófono.');
+        return;
+      }
 
-        var downloadLink = document.createElement('a');
+      // Creamos el grabador usando el stream ya obtenido
+      recordRTC = RecordRTC(mediaStream, { type: 'video' });
+      recordRTC.startRecording();
+
+      startButton.disabled = true;
+      stopButton.disabled = false;
+    });
+
+    // 3️⃣ Al pulsar "Detener Grabación"
+    stopButton.addEventListener('click', () => {
+      recordRTC.stopRecording(() => {
+        const blob = recordRTC.getBlob();
+        const videoURL = URL.createObjectURL(blob);
+
+        // Creamos enlace de descarga
+        const downloadLink = document.createElement('a');
         downloadLink.href = videoURL;
         downloadLink.download = 'grabacion.webm';
-        downloadLink.innerHTML = 'Descargar video';
+        downloadLink.textContent = 'Descargar video';
 
-        var downloadSection = document.getElementById('downloadSection');
         downloadSection.innerHTML = '';
         downloadSection.appendChild(downloadLink);
 
-        recordRTC.getDataURL(function(dataURL) {
-          recordRTC.save('grabacion.webm');
-        });
-
         recordRTC.reset();
-
-        // Liberar audio y cámara
-        if (mediaStream) {
-          var tracks = mediaStream.getTracks();
-          tracks.forEach(function(track) {
-            track.stop();
-          });
-        }
 
         startButton.disabled = false;
         stopButton.disabled = true;
       });
     });
   </script>
-  <div id="downloadSection"></div>
+
 </body>
 </html>

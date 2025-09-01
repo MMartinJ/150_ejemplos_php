@@ -1,48 +1,79 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Capturar foto y descargar enlace</title>
+<meta charset="UTF-8">
+<title>Capturar foto y descargar enlace</title>
+<style>
+  /* Ajustes básicos para que el vídeo ocupe todo el ancho disponible */
+  video {
+    max-width: 100%;
+    height: auto;
+    background: #000;
+  }
+</style>
 </head>
 <body>
-  <video id="videoElement" width="100%" height="100%" autoplay></video>
-  <button id="captureButton">Tomar Foto</button>
-  <canvas id="canvasElement" width="100" height="100" style="display: none;"></canvas>
-  <div id="downloadSection"></div>
 
-  <script>
-    var videoElement = document.getElementById('videoElement');
-    var captureButton = document.getElementById('captureButton');
-    var canvasElement = document.getElementById('canvasElement');
+<!-- Elemento de vídeo donde se mostrará la cámara -->
+<video id="videoElement" autoplay playsinline></video>
 
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: 'environment' } } })
-        .then(function(stream) {
-          videoElement.srcObject = stream;
+<!-- Botón para tomar la foto -->
+<button id="captureButton">Tomar Foto</button>
 
-          captureButton.addEventListener('click', function() {
-            var context = canvasElement.getContext('2d');
-            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
-            var photoURL = canvasElement.toDataURL('image/png');
+<!-- Lienzo oculto donde se dibujará la captura -->
+<canvas id="canvasElement" width="640" height="480" style="display: none;"></canvas>
 
-            var downloadLink = document.createElement('a');
-            downloadLink.href = photoURL;
-            downloadLink.download = 'captura.png';
-            downloadLink.innerHTML = 'Descargar foto';
+<!-- Sección donde aparecerá el enlace de descarga -->
+<div id="downloadSection"></div>
 
-            var downloadSection = document.getElementById('downloadSection');
-            downloadSection.innerHTML = '';
-            downloadSection.appendChild(downloadLink);
-          });
-        })
-        .catch(function(error) {
-          console.error('Error al acceder a la cámara: ', error);
+<script>
+  // Referencias a los elementos HTML
+  var videoElement = document.getElementById('videoElement');
+  var captureButton = document.getElementById('captureButton');
+  var canvasElement = document.getElementById('canvasElement');
+
+  // Comprobamos si el navegador soporta la API de medios
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+
+    // Petición de acceso a la cámara
+    // Usamos facingMode: 'environment' para intentar la cámara trasera en móviles
+    // pero sin "exact" para que no falle en navegadores que no la soportan
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      .then(function(stream) {
+        // Asignamos el flujo de vídeo al elemento <video>
+        videoElement.srcObject = stream;
+
+        // Evento al pulsar el botón de captura
+        captureButton.addEventListener('click', function() {
+          var context = canvasElement.getContext('2d');
+
+          // Dibujamos el fotograma actual del vídeo en el canvas
+          context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+
+          // Convertimos el contenido del canvas a una URL de datos en formato PNG
+          var photoURL = canvasElement.toDataURL('image/png');
+
+          // Creamos un enlace de descarga
+          var downloadLink = document.createElement('a');
+          downloadLink.href = photoURL;
+          downloadLink.download = 'captura.png';
+          downloadLink.textContent = 'Descargar foto';
+
+          // Mostramos el enlace en la sección de descarga
+          var downloadSection = document.getElementById('downloadSection');
+          downloadSection.innerHTML = ''; // Limpiamos contenido previo
+          downloadSection.appendChild(downloadLink);
         });
-    } else {
-      console.error('La API de captura de medios no es compatible con este navegador.');
-    }
-  </script>
+      })
+      .catch(function(error) {
+        // Si hay error (sin permisos, cámara no disponible, etc.)
+        console.error('Error al acceder a la cámara: ', error);
+      });
+
+  } else {
+    console.error('La API de captura de medios no es compatible con este navegador.');
+  }
+</script>
+
 </body>
 </html>
-
