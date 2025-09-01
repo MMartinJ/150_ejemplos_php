@@ -1,7 +1,8 @@
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Abrir imagenes aleatorias con rnd y link</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Abrir imagenes aleatorias con rnd y link</title>
 </head>
 <?php
 
@@ -25,8 +26,9 @@ $randomNum = rand(0, $numImages);
 
 $imagesLink = array(
     "http://www.google.es",
-    "http://www.dpformacio.com",
-    "http://www.yahoo.es"
+    "http://www.duckduckgo.com",
+    "http://www.yahoo.es",
+    "http://www.msn.com"
 );
 
 $imagePath = "images/" . $images[$randomNum];
@@ -38,4 +40,5 @@ $externalLink = $imagesLink[$randomNum];
 
 <body>
 </body>
+
 </html>

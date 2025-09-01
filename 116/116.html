@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,36 +5,38 @@
 
 <style type="text/css">
 
-IFRAME RESPONSIVE
+/* IFRAME RESPONSIVE: estilos para que el iframe de YouTube sea adaptable */
 
-
+/* Contenedor del vídeo */
 .video {
-   position: relative;
-   padding-bottom: 56.25%;
-   overflow: hidden;
+   position: relative;          /* Necesario para posicionar el iframe de forma absoluta dentro */
+   padding-bottom: 56.25%;      /* Proporción 16:9 → (9/16)*100 = 56.25% */
+   overflow: hidden;            /* Oculta cualquier contenido que sobresalga */
 }
 
-.video iframe
-
- {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* El iframe dentro del contenedor */
+.video iframe {
+    position: absolute;         /* Se posiciona respecto al contenedor .video */
+    display: block;             /* Se comporta como bloque */
+    top: 0;                     /* Alineado arriba */
+    left: 0;                    /* Alineado a la izquierda */
+    width: 100%;                /* Ocupa todo el ancho del contenedor */
+    height: 100%;               /* Ocupa toda la altura del contenedor */
 }
-
-
 
 </style>
-
-
 </head>
 <body>
 
+<!-- Contenedor que aplica el estilo responsive -->
 <div class="video">
-     <iframe width="640" height="360" src="https://www.youtube.com/embed/eZJMzAHa-uQ" frameborder="0" allowfullscreen ></iframe>
+     <!-- Iframe de YouTube que incrusta el vídeo -->
+     <iframe width="640" height="360"
+             src="https://www.youtube.com/embed/eZJMzAHa-uQ"
+             frameborder="0"
+             allowfullscreen>
+     </iframe>
 </div>
+
 </body>
 </html>

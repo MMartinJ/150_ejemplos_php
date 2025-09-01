@@ -1,29 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Poner video de YouTube en pagina web responsive</title>
+<meta charset="UTF-8" />
+<title>Poner video de YouTube en página web responsive</title>
+
 <style>
-/* Start: Video Responsive */
+/* ===== Estilos para hacer el iframe de YouTube responsive ===== */
+
+/* Contenedor del vídeo */
 .video-responsive {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
+    position: relative;      /* El iframe se posicionará de forma absoluta dentro de este contenedor */
+    width: 100%;              /* Ocupa todo el ancho disponible */
+    height: 0;                /* Altura inicial 0, se ajusta con el padding para mantener proporción */
+    padding-bottom: 56.25%;   /* Proporción 16:9 → (9/16)*100 = 56.25% */
 }
-.video-responsive iframe{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+/* El iframe dentro del contenedor */
+.video-responsive iframe {
+    position: absolute;       /* Se coloca en relación al contenedor */
+    top: 0;                   /* Alineado arriba */
+    left: 0;                  /* Alineado a la izquierda */
+    width: 100%;              /* Ocupa todo el ancho del contenedor */
+    height: 100%;             /* Ocupa toda la altura del contenedor */
 }
-/* End: Video Responsive */
 </style>
 </head>
 <body>
 
+<!-- Contenedor que aplica el estilo responsive -->
 <div class="video-responsive">
-<iframe width="0" height="0" src="https://www.youtube.com/embed/3JK84n-jsMU" title="TransVision Madrid 2022 - DAY 2 - Sunday, November 13, 2022 (stream)" frameborder="0" allow="accelerometer; autoplay="1"; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <!-- Iframe de YouTube -->
+    <!-- Se añade ?autoplay=1 a la URL para que el vídeo se reproduzca automáticamente -->
+    <!-- El atributo allow incluye 'autoplay' para permitirlo -->
+    <iframe 
+        src="https://www.youtube.com/embed/3JK84n-jsMU?autoplay=1"
+        title="TransVision Madrid 2022 - DAY 2 - Sunday, November 13, 2022 (stream)"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
 
 </body>
 </html>
