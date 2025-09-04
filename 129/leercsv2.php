@@ -6,16 +6,16 @@
 <body>
 <?php
 
-$nom = $_POST["nombre"];
+$nombre = $_POST["nombre"];
 
-echo "Datos a buscar: " . $nom . "<br>";
+echo "Datos a buscar: " . $nombre . "<br>";
 
 // Leer un CSV
 $archivo = fopen("datos2.csv", "rb");
 
 if ($archivo !== false) {
     while (($aDatos = fgetcsv($archivo, 100, ";")) !== false) {
-        if ($aDatos[0] == $nom) { // Busco el nombre si coincide
+        if ($aDatos[0] == $nombre) { // Busco el nombre si coincide
             echo "Nombre: " . $aDatos[0] . "<br>";
             echo "Apellido 1: " . $aDatos[1] . "<br>";
             echo "Apellido 2: " . $aDatos[2] . "<br>";

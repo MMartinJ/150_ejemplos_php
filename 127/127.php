@@ -1,16 +1,35 @@
 <?php
-// recibo datos del formulario
-$id="1"; // se crea un id para cada producto (no creado hay que hacer el código) 1.html es de ejemplo
-$producto = $_POST["producto"]; //busco el registro del campo nombre
-$concepto = $_POST["concepto"]; //busco el registro del campo nombre
-$precio = $_POST["precio"]; //busco el registro del campo nombre
+// Función para obtener el siguiente ID
+function obtenerSiguienteId($archivoCsv) {
+    if (!file_exists($archivoCsv)) {
+        return 1; // Si no existe el archivo, empezamos en 1
+    }
 
+    $ultimoId = 0;
+    if (($handle = fopen($archivoCsv, "r")) !== false) {
+        while (($datos = fgetcsv($handle, 0, ";")) !== false) {
+            if (isset($datos[0]) && is_numeric($datos[0])) {
+                $ultimoId = max($ultimoId, (int)$datos[0]);
+            }
+        }
+        fclose($handle);
+    }
+    return $ultimoId + 1;
+}
 
-// Crear un excel con PHP CSV
-   $linea  =$id.",".$producto.",".$concepto.",".$precio.",".$path;
+$archivoCsv = "productos.csv";
+$id = obtenerSiguienteId($archivoCsv);
 
-// Abrimos el archivo situando el puntero al final del archivo:
-     $archivo = fopen( "productos.csv", "ab" );
-     fputcsv( $archivo, split(",", $linea), ";" );
-     fclose( $archivo );
+$producto = $_POST["producto"];
+$descripcion = $_POST["descripcion"];
+$precio = $_POST["precio"];
+
+// Abrir archivo en modo añadir
+$archivo = fopen($archivoCsv, "ab");
+fputcsv($archivo, [$id, $producto, $descripcion, $precio], ";");
+fclose($archivo);
+
+// Redirigir de vuelta al formulario
+header("Location: ./form.html");
+exit;
 ?>

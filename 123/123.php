@@ -1,7 +1,7 @@
 <?php
-$color="#0000FF";
-$texto="Verdana";
-$size=16;
+$color = "#0000FF";
+$texto = "Verdana";
+$size = 16;
 
 // Leer datos del fichero lista.txt
 $archivo = "lista.txt";
@@ -11,4 +11,3 @@ echo "<font size='$size' color='$color' face='$texto'>$contenido_archivo</font><
 
 //echo $contenido_archivo;
 fclose($leer);
-?>
