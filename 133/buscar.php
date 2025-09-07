@@ -1,29 +1,58 @@
-<?php
-$buscar = $_POST["buscar"];
-// Conectamos a la BD
-$link = mysql_connect("localhost","nhjukvlb_ejemplo","phpya101","");
-mysql_select_db("nhjukvlb_libro101", $link);
-// Realizamos la busqueda
-$result = mysql_query("SELECT * FROM agenda WHERE nombre LIKE '%$buscar%' ORDER BY nombre", $link);
-if ($row = mysql_fetch_array($result)){
-      
-	  echo "<table border = '1'> \n";
-//Mostramos los registros de la tabla
-echo "<tr> \n";
-while ($field = mysql_fetch_field($result)){
-            echo "<td>$field->name</td> \n";
-}
-      echo "</tr> \n";
-do {
-            echo "<tr> \n";
-            echo "<td>".$row["id"]."</td> \n";
-            echo "<td>".$row["nombre"]."</td> \n";
-            echo "<td>".$row["telefono"]."</td> \n";
-            echo "<td><a href='mailto:".$row["email"]."'>".$row["email"]."</a></td> \n";
-            echo "</tr> \n";
-      } while ($row = mysql_fetch_array($result));
-            echo "</table> \n";
-} else {
-echo "¡ No se ha encontrado ningún registro !";
-}
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #afafaf;
+            padding: 50px;
+        }
+        .container{
+            background: white;
+        }
+        .columna{
+            display: flex;
+        }
+        .celda{
+            flex: 1;
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="columna">
+            <div class="celda">Nombre</div>
+            <div class="celda">Telefono</div>
+        </div>
+        <div class="columna">
+            <?php
+                $pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+                $sql = "SELECT * FROM agenda WHERE nombre LIKE :buscar ORDER BY nombre";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([':buscar' => "%$_POST[buscar]%"]);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $row = $result[0];
+                    foreach ($result as $row) {
+                        echo "<div class='celda'>" . $row["nombre"] . "</div> \n"; // Columna Nombre
+                        echo "<div class='celda'>" . $row["telefono"] . "</div> \n"; // Columna TelÃ©fono
+                    }
+                } else {
+                    echo "No se ha encontrado ningÃºn registro !";
+                }
+            ?>
+        </div>
+    </div>
+</body>
+</html>

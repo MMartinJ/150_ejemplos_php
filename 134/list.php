@@ -1,12 +1,8 @@
 <?php
 // Conectamos a la BD
-$link = mysql_connect("localhost","nhjukvlb_ejemplo","phpya101","");
-mysql_select_db("nhjukvlb_libro101", $link);
-$result = mysql_query("SELECT * FROM agenda", $link);
+$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8mb4",'root','');
+$sql = "SELECT * FROM agenda";
 
-// Ahora hago una peticiÛn para que me muestre todos los registros de la tabla acceso	
-$query = "SELECT * from agenda";
-$result = mysql_query($query);
 
 // Preparo la Tabla
 
@@ -15,19 +11,22 @@ echo "<table width=\"500\" border= \"0\" align =\"center\" cellpadding =\"5\"  c
 echo "<tr bgcolor=\"#DDDDDD\">";
 
 // Parte fija de la tabla
-echo "  <td width=\"150\"> <center><b> Numero     </b></center></td>\n";
+
 echo "  <td width=\"150\"> <center><b> Nombre   </b></center></td>\n";
 echo "  <td width=\"150\"> <center><b> Telefono     </b></center></td>\n";
 
-// Parte din·mica de la tabla
 
-while ($row=mysql_fetch_row($result))
-{
-echo " <tr bgcolor=\"#EEEEEE\">\n";
-echo "   <td>$row[0]</td>\n";
-echo "   <td>$row[1]</td>\n";
-echo "   <td>$row[2]</td>\n";
-echo " </tr>\n";
+// Ahora hago una petici√≥n para que me muestre todos los registros de la tabla acceso	
+if($stmt = $pdo->query($sql)){
+    while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    // usar $fila aqu√≠
+    echo " <tr bgcolor=\"#EEEEEE\">\n";
+    echo "   <td>{$fila['nombre']}</td>\n";
+    echo "   <td>{$fila['telefono']}</td>\n";
+    echo " </tr>\n";
 }
 echo "</table>\n";
+}
+
+
 ?>

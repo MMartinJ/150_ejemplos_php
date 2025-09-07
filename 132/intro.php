@@ -6,21 +6,36 @@ $nombre = $_POST["nombre"];
 $telefono = $_POST['telefono'];
 
 // conecta con la BD
-$link = mysqli_connect("localhost", "nhjukvlb_ejemplo", "phpya101", "nhjukvlb_libro101");
-if (!$link) {
-    die("No se pudo conectar al SERVIDOR: " . mysqli_connect_error());
+try{
+    $pdo = new pdo(
+        'mysql:host=localhost;dbname=test;charset=utf8mb4', // DSN de conexión (Data Source Name)
+        'root',                                             // Usuario de MySQL
+        ''                                                  // Contraseña de MySQL (vacía en este ejemplo)
+    );
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
 
-//Introducimos el nombre y el telefono
-$sql = "INSERT INTO agenda (nombre, telefono) VALUES ('$nombre', '$telefono')";
-$result = mysqli_query($link, $sql);
-if ($result) {
-    echo "Hemos recibido sus datos y guardados con éxito.\n";
-    echo "NOMBRE " . $nombre . " TELEFONO " . $telefono;
-} else {
-    echo "Error al guardar los datos: " . mysqli_error($link);
+
+// Consulta con marcadores de posición
+$sql = "INSERT INTO agenda (nombre, telefono) VALUES (:nombre, :telefono)";
+
+// Preparamos la consulta
+$stmt = $pdo->prepare($sql);
+
+// Ejecutamos pasando los valores en un array asociativo
+try{
+    $stmt->execute([
+        ':nombre'  => $nombre,
+        ':telefono'=> $telefono
+]);
+} catch (PDOException $e) {
+    die("Error en la inserción: " . $e->getMessage());
 }
 
-// Cerrar la conexión
-mysqli_close($link);
+echo "Registro insertado correctamente";
+
+// Cerramos la conexión (opcional en PHP, se cierra al finalizar el script)
+$pdo = null;
+
 ?>

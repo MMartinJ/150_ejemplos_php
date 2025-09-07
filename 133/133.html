@@ -1,24 +1,80 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar Registro</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+    }
+
+    .form-container {
+        max-width: 400px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background: #007BFF;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        background: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+        .form-container {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
 <body>
-<form method = "POST" action = "buscar.php">
-  <p align="center"><br>
-    <br>
-    <span class="Estilo1">Buscar Registro de la Base de Datos</span> </p>
-  <table width="444" border="1" align="center">
-    <tr>
-      <th width="434" class="Estilo1" scope="col"><div align="left"><strong>Nombre del Registro:</strong>
-          <input type="text" name="buscar" size="20">
-      </div></th>
-    </tr>
-    <tr>
-      <td><div align="center">
-        <input name="submit" type="submit" value="Buscar Registro">
-      </div></td>
-    </tr>
-  </table>
-  <p>&nbsp; </p>
-</form>
+
+<div class="form-container">
+    <h2>Buscar Registro de la Base de Datos</h2>
+    <form method="POST" action="buscar.php">
+        <label for="buscar">Nombre del Registro:</label>
+        <input type="text" name="buscar" id="buscar" required>
+        <input type="submit" name="submit" value="Buscar Registro">
+    </form>
+</div>
+
 </body>
 </html>
-
-
