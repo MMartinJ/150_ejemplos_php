@@ -1,12 +1,36 @@
 <?php
-// conecta con la BD
-$link = mysql_connect("localhost","nhjukvlb_ejemplo","phpya101")or die ("No se puede conectar al SERVIDOR ");
-mysql_select_db("nhjukvlb_libro101", $link)or die ("No se puede conectar a la Base de Datos");
 
-//recibo datos
-$nombre = $_POST["nombre"];
-$telefono = $_POST["telefono"];
-// guardo datos
-$imagen = addslashes(fread(fopen($imagen, "r"), filesize($imagen))); 
-mysql_query("INSERT INTO agenda (nombre,telefono,imagen) VALUES ('$nombre','$telefono','$imagen')"); 
-?>Se ha subido la imagen a la base de datos, puedes verla pulsando <a href="ver.php?nombre=<? echo $nombre ?>">aqu�</a>
+$dsn = "mysql:host=localhost;dbname=test";
+
+$pdo = new PDO($dsn,'root','');
+
+$sql = "INSERT INTO agenda (nombre,telefono,imagen) VALUES (:nombre,:telefono,:imagen)";
+
+$stmt = $pdo->prepare($sql);
+
+$nombre = $_POST['nombre'];
+$telefono = $_POST['telefono'];
+
+// Carpeta donde se guardarán los archivos
+$carpetaDestino = __DIR__ . "./subidos/";
+$nombreArchivo = $_FILES['imagen']['name'];
+
+move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaDestino . $nombreArchivo);
+
+// Guardar solo la ruta relativa en la base de datos
+$rutaRelativa = "./subidos/" . $nombreArchivo;
+
+
+
+
+$stmt->execute(
+    ['nombre' => $nombre,
+    'telefono' => $telefono,
+    'imagen' => $rutaRelativa]
+);
+
+echo 'Contacto con foto de perfil agregado!<br>';
+
+echo 'Puedes verla pulsando <a href="ver.php?nombre='.$nombre.'">aquí</a>';
+
+?>

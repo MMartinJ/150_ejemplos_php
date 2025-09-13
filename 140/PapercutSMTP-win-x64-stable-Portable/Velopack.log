@@ -1,0 +1,18 @@
+[stub:25692] [00:04:03] [INFO] --
+[stub:25692] [00:04:03] [INFO] Starting Velopack Stub (at "C:\\Users\\Marina\\Downloads\\PapercutSMTP-win-x64-stable-Portable\\Papercut SMTP.exe")
+[stub:25692] [00:04:03] [INFO] Stub about to start Update.exe (C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\Update.exe) with args: ["start", "--"]
+[update:28056] [00:04:03] [INFO] --
+[update:28056] [00:04:03] [INFO] Starting Velopack Updater (0.0.626)
+[update:28056] [00:04:03] [INFO]     Location: C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\Update.exe
+[update:28056] [00:04:03] [INFO]     CWD: C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable
+[update:28056] [00:04:03] [INFO]     Verbose: false
+[update:28056] [00:04:03] [INFO]     Silent: false
+[update:28056] [00:04:03] [INFO]     Log File: None
+[update:28056] [00:04:03] [INFO] Command: Start
+[update:28056] [00:04:03] [INFO]     Wait: NoWait
+[update:28056] [00:04:03] [INFO]     Exe Name: None
+[update:28056] [00:04:03] [INFO]     Exe Args: None
+[update:28056] [00:04:03] [INFO] Loaded manifest for application: PapercutSMTP
+[update:28056] [00:04:03] [INFO] Root Directory: C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable
+[update:28056] [00:04:03] [INFO] Attempting to open global system mutex: 'velopack-PapercutSMTP'
+[update:28056] [00:04:03] [INFO] About to launch: 'C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\current\Papercut.exe' in dir 'C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\current'

@@ -1,24 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
 
-<?php
-// Nos conectamos a la base de datos
-$link = mysql_connect("localhost","nhjukvlb_ejemplo","phpya101","");
-mysql_select_db("nhjukvlb_libro101", $link);
+    //conexion a la base de datos mediante pdo
 
-mysql_query ("SET NAMES 'utf8'");
-$consulta=mysql_query("select id,nombre from agenda",$link) or
-die("Problemas en el select:".mysql_error());
-// Creamos el campo combo en HTML y enviamos la selección al archivo drecibido.php
-echo '<form name="form1" action="recibidos.php" method="post">'; 
-echo '<select name="miSelect">'; 
-echo '<option value="0">Seleccione </option>'; 
-  
-while($row = mysql_fetch_array($consulta))
-{
-echo'<OPTION VALUE="'.$row['id'].'">'.$row['nombre'].'</OPTION>';
-};
+    $dsn = "mysql:host=localhost;dbname=test";
+    $pdo = new PDO($dsn,'root','');
 
-echo '</select>'; 
-echo '<input type="Submit" name="Submit" Value="Enviar" />'; 
-echo '</form>'; 
-mysql_free_result($consulta); // Liberar memoria usada por consulta. 
-?> 
+    $sql = "SELECT id_agenda,nombre FROM agenda";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute();
+    $lista = $stmt->fetchAll();
+                
+    ?>
+    <form method="POST" action="recibidos.php">
+        <select name="miSelect">
+            <option value="0">Seleccione: </option>
+            <?php
+
+                foreach($lista as $item){
+                    echo '<option value="'.$item[0].'"> '.$item[1].' </option>';
+                }
+                
+            ?>
+        </select>
+        <input type="Submit" name="Submit" Value="Enviar" />
+    </form>
+</body>
+</html>
