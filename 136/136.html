@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html{
+            background-color: rgb(202, 202, 202);
+            margin: auto;
+            padding: 0;
+            min-height: 100vh;
+            display: grid;
+            align-content: center;
+        }
+        .pag{
+            background-color: white;
+            width: 20%;
+            margin:auto;
+            padding: 35px;
+            justify-content: center;
+            display: flex;
+            
+        }
+        .pag div{
+            padding:  5px;
+            justify-content: center;
+        }
+        .pag :last-child{
+           text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="pag">
+        <form action="borrar.php" method="POST">
+            <div>
+                <label for="id">Introduce la ID del registro a eliminar:</label>
+            </div>
+            <div>
+                <input type="number" name="id" id="id">
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

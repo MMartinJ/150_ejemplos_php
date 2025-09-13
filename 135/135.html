@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html{
+            margin: auto;
+            padding: auto;
+            background-color: rgb(192, 192, 192);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;   
+            align-items: center; 
+        }
+        h1{
+            text-align: center;
+        }
+        .pag{
+            width: 90%;
+            margin: auto;
+            justify-content: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        form{
+            display: grid;
+            row-gap: 8px;
+            justify-content: center;
+            
+        }
+        form div:last-child {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="pag">
+        <h1>Modificar Registro de la base de datos</h1>
+        
+        <form method="POST" action="modificar.php">
+            <div>
+                <label for="num">Numero a modificar:</label>
+                <input type="number" name="num" id="num">
+            </div>
+            <div>
+                <label for="nombre">Nombre nuevo:</label>
+                <input type="text" name="nombre"  id="nombre">
+            </div>
+            <div>
+                <label for="telf">Telefono nuevo:</label>
+                <input type="text" name="telf"  id="telf">
+            </div>
+            <div>
+                <input type="submit" value="Aceptar Modificación">
+            </div>
+        </form>
+        
+    </div>
+    
+</body>
+</html>
