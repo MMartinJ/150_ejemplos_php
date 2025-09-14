@@ -16,3 +16,39 @@
 [update:28056] [00:04:03] [INFO] Root Directory: C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable
 [update:28056] [00:04:03] [INFO] Attempting to open global system mutex: 'velopack-PapercutSMTP'
 [update:28056] [00:04:03] [INFO] About to launch: 'C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\current\Papercut.exe' in dir 'C:\Users\Marina\Downloads\PapercutSMTP-win-x64-stable-Portable\current'
+[stub:10696] [16:13:24] [INFO] --
+[stub:10696] [16:13:24] [INFO] Starting Velopack Stub (at "C:\\Users\\marin\\150_ejemplos_php\\140\\PapercutSMTP-win-x64-stable-Portable\\Papercut SMTP.exe")
+[stub:10696] [16:13:24] [INFO] Stub about to start Update.exe (C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\Update.exe) with args: ["start", "--"]
+[update:18028] [16:13:24] [INFO] --
+[update:18028] [16:13:24] [INFO] Starting Velopack Updater (0.0.626)
+[update:18028] [16:13:24] [INFO]     Location: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\Update.exe
+[update:18028] [16:13:24] [INFO]     CWD: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable
+[update:18028] [16:13:24] [INFO]     Verbose: false
+[update:18028] [16:13:24] [INFO]     Silent: false
+[update:18028] [16:13:24] [INFO]     Log File: None
+[update:18028] [16:13:24] [INFO] Command: Start
+[update:18028] [16:13:24] [INFO]     Wait: NoWait
+[update:18028] [16:13:24] [INFO]     Exe Name: None
+[update:18028] [16:13:24] [INFO]     Exe Args: None
+[update:18028] [16:13:24] [INFO] Loaded manifest for application: PapercutSMTP
+[update:18028] [16:13:24] [INFO] Root Directory: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable
+[update:18028] [16:13:24] [INFO] Attempting to open global system mutex: 'velopack-PapercutSMTP'
+[update:18028] [16:13:24] [INFO] About to launch: 'C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\current\Papercut.exe' in dir 'C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\current'
+[stub:17092] [16:17:05] [INFO] --
+[stub:17092] [16:17:05] [INFO] Starting Velopack Stub (at "C:\\Users\\marin\\150_ejemplos_php\\140\\PapercutSMTP-win-x64-stable-Portable\\Papercut SMTP.exe")
+[stub:17092] [16:17:05] [INFO] Stub about to start Update.exe (C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\Update.exe) with args: ["start", "--"]
+[update:15276] [16:17:05] [INFO] --
+[update:15276] [16:17:05] [INFO] Starting Velopack Updater (0.0.626)
+[update:15276] [16:17:05] [INFO]     Location: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\Update.exe
+[update:15276] [16:17:05] [INFO]     CWD: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable
+[update:15276] [16:17:05] [INFO]     Verbose: false
+[update:15276] [16:17:05] [INFO]     Silent: false
+[update:15276] [16:17:05] [INFO]     Log File: None
+[update:15276] [16:17:05] [INFO] Command: Start
+[update:15276] [16:17:05] [INFO]     Wait: NoWait
+[update:15276] [16:17:05] [INFO]     Exe Name: None
+[update:15276] [16:17:05] [INFO]     Exe Args: None
+[update:15276] [16:17:05] [INFO] Loaded manifest for application: PapercutSMTP
+[update:15276] [16:17:05] [INFO] Root Directory: C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable
+[update:15276] [16:17:05] [INFO] Attempting to open global system mutex: 'velopack-PapercutSMTP'
+[update:15276] [16:17:05] [INFO] About to launch: 'C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\current\Papercut.exe' in dir 'C:\Users\marin\150_ejemplos_php\140\PapercutSMTP-win-x64-stable-Portable\current'

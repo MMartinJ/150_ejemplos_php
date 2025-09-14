@@ -1,51 +1,51 @@
-<?
-function form_mail($sPara, $sAsunto, $sTexto, $sDe)
- { 
-$bHayFicheros = 0; 
-$sCabeceraTexto = ""; 
-$sAdjuntos = ""; 
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-if ($sDe)$sCabeceras = "From:".$sDe."\n"; 
-else $sCabeceras = ""; 
-$sCabeceras .= "MIME-version: 1.0\n"; 
-foreach ($_POST as $sNombre => $sValor) 
-$sTexto = $sTexto."\n".$sNombre." = ".$sValor; 
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
 
-foreach ($_FILES as $vAdjunto)
- { 
-if ($bHayFicheros == 0)
- { 
-$bHayFicheros = 1; 
-$sCabeceras .= "Content-type: multipart/mixed;"; 
-$sCabeceras .= "boundary=\"--_Separador-de-mensajes_--\"\n"; 
+// Validación básica
+if (empty($_POST['email']) || empty($_POST['asunto']) || empty($_POST['mensaje'])) {
+    exit('Faltan datos obligatorios.');
+}
 
-$sCabeceraTexto = "----_Separador-de-mensajes_--\n"; 
-$sCabeceraTexto .= "Content-type: text/plain;charset=iso-8859-1\n"; 
-$sCabeceraTexto .= "Content-transfer-encoding: 7BIT\n"; 
+$nombre   = $_POST['Nombre'] ?? '';
+$email    = $_POST['email'];
+$asunto   = $_POST['asunto'];
+$mensaje  = $_POST['mensaje'];
 
-$sTexto = $sCabeceraTexto.$sTexto; 
-} 
-if ($vAdjunto["size"] > 0)
- { 
-$sAdjuntos .= "\n\n----_Separador-de-mensajes_--\n"; 
-$sAdjuntos .= "Content-type: ".$vAdjunto["type"].";name=\"".$vAdjunto["name"]."\"\n";; 
-$sAdjuntos .= "Content-Transfer-Encoding: BASE64\n"; 
-$sAdjuntos .= "Content-disposition: attachment;filename=\"".$vAdjunto["name"]."\"\n\n"; 
+// Crear instancia de PHPMailer
+$mail = new PHPMailer(true);
 
-$oFichero = fopen($vAdjunto["tmp_name"], 'r'); 
-$sContenido = fread($oFichero, filesize($vAdjunto["tmp_name"])); 
-$sAdjuntos .= chunk_split(base64_encode($sContenido)); 
-fclose($oFichero); 
-} 
-} 
+try {
+    // Configuración del servidor SMTP (Papercut)
+    $mail->isSMTP();
+    $mail->Host       = 'localhost'; // Papercut escucha aquí
+    $mail->Port       = 25;          // Puerto por defecto de Papercut
+    $mail->SMTPAuth   = false;       // Papercut no requiere autenticación
+    $mail->SMTPSecure = false;       // Sin cifrado en local
 
-if ($bHayFicheros) 
-$sTexto .= $sAdjuntos."\n\n----_Separador-de-mensajes_----\n"; 
-return(mail($sPara, $sAsunto, $sTexto, $sCabeceras)); 
-} 
+    // Remitente y destinatario
+    $mail->setFrom('origen@test.com', 'Usuario Origen');
+    $mail->addAddress($email, $nombre?: 'Destinatario de Prueba');
 
-//cambiar aqui el email 
-if (form_mail("pruebasphp@gmail.com", $_POST[asunto], 
-"Los datos introducidos en el formulario son:\n\n", $_POST[email])) 
-echo "Su formulario ha sido enviado con exito"; 
+    // Adjuntar archivo si se ha subido
+    if (!empty($_FILES['archivo1']['tmp_name'])) {
+        $mail->addAttachment($_FILES['archivo1']['tmp_name'], $_FILES['archivo1']['name']);
+    }
+
+    // Contenido del mensaje
+    $mail->isHTML(true);
+    $mail->Subject = $asunto;
+    $mail->Body    = nl2br(htmlspecialchars($mensaje));
+    $mail->AltBody = $mensaje; // Versión en texto plano
+
+    // Enviar
+    $mail->send();
+    echo "Mensaje enviado correctamente (capturado por Papercut)";
+} catch (Exception $e) {
+    echo "Error al enviar el mensaje: {$mail->ErrorInfo}";
+}
 ?>

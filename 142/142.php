@@ -1,5 +1,5 @@
 
-<?
+<?php
 
 // Supuesto POST
 //$suscrito = $_POST["subscribete"];

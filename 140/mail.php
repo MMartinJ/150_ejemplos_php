@@ -1,40 +1,41 @@
-
 <?php
-// Supuesto recibo por POST
-$nombre = $_POST["nombre"];
-$suscrito = $_POST["mail"];
-$mensaje = $_POST["mensaje"];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-echo $nombre. "<br>" ." ".$suscrito ." ". "<br> ". $mensaje ."<br>";
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
 
+$asunto = $_POST['asunto'];
+$email = $_POST['mail'];
+$mensaje = $_POST['mensaje'];
 
-// Verificamos que los datos POST se hayan recibido correctamente
-if (empty($nombre) || empty($suscrito) || empty($mensaje)) {
-    echo "Todos los campos son obligatorios.";
-    exit;
+$mail = new PHPMailer(true);
+
+try {
+    // Configuración para Papercut
+    $mail->isSMTP();
+    $mail->Host       = 'localhost';
+    $mail->Port       = 25; // o 2525 si lo configuraste así
+    $mail->SMTPAuth   = false; // Papercut no requiere autenticación (en un entorno real ponlo a true)
+    //$mail->SMTPAuth   = true;
+    //$mail->Username   = 'correo@mi_dominio.com'; 
+    //$mail->Password   = 'miclave24';
+    $mail->SMTPSecure = false; // No usar TLS/SSL (en un entorno real ponlo a true)
+    //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+    // Remitente y destinatario
+    $mail->setFrom('origen@test.com', 'Servidor Local');
+    $mail->addAddress($email, 'Destinatario de prueba');
+
+    // Contenido
+    $mail->isHTML(true);
+    $mail->Subject = $asunto;
+    $mail->Body    = $mensaje;
+    $mail->AltBody = 'Este es un mensaje de prueba enviado a Papercut SMTP.';
+
+    $mail->send();
+    echo 'Correo enviado (revisa la ventana de Papercut).';
+} catch (Exception $e) {
+    echo 'Error al enviar el correo: ' . $mail->ErrorInfo;
 }
-
-// La empresa recibe el correo del suscriptor
-$destinatario = "pfnredes@gmail.com";
-$asunto = "SUSCRIPCIÓN NUEVA - " . $nombre;
-
-// Cabeceras para enviar un correo HTML
-$mailheaders = "From: " . $suscrito . "\r\n";
-$mailheaders .= "MIME-Version: 1.0\r\n";
-$mailheaders .= "Content-Type: text/html; charset=utf-8\r\n";
-
-// Construir el mensaje en formato HTML
-$mensaje = "<html><body>";
-$mensaje .= '<h1 style="color: blue">Nuevo suscrito</h1>';
-$mensaje .= '<p>Nombre: ' . $nombre . '</p>';
-$mensaje .= '<p>Correo electrónico: ' . $suscrito . '</p>';
-$mensaje .= '<p>Mensaje: ' . $mensaje . '</p>';
-$mensaje .= "</body></html>";
-
-// Enviar el correo electrónico
-if (mail($destinatario, $asunto, $mensaje, $mailheaders)) {
-    echo "El correo se ha enviado correctamente.";
-} else {
-    echo "Hubo un error al enviar el correo.";
-}
-?>
