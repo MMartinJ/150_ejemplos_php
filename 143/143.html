@@ -1,25 +1,34 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Map definir shape</title>
-<style type="text/css">
-body {
-	background-color: #000;
-	text-align: center;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de imagen</title>
+  <style>
+    body {
+      background-color: #000;
+      text-align: center;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
-
 <body>
 
- <p><img src="botones presentacion 1.0.png" width="380" height="111" usemap="#Map">
-                <map name="Map">
-                  <area shape="rect" coords="9,8,127,102" href="file:///C|/Users/I7/Desktop/ayudarform.html">
-                  <area shape="rect" coords="254,9,364,101" href="file:///C|/Users/I7/Desktop/ayudar.html">
-                  <area shape="rect" coords="132,10,247,101" href="file:///C|/Users/I7/Desktop/find.html">
-   </map>
-</p>
+  <img src="./botones presentacion 1.0.png" 
+       alt="Botones de navegación" 
+       usemap="#mapa-botones" 
+       width="380" height="111">
+
+  <map name="mapa-botones" id="mapa-botones">
+    <area shape="rect" coords="9,8,127,102" href="ayudarform.html" alt="Formulario de ayuda">
+    <area shape="rect" coords="254,9,364,101" href="ayudar.html" alt="Ayuda">
+    <area shape="rect" coords="132,10,247,101" href="find.html" alt="Buscar">
+  </map>
 
 </body>
 </html>

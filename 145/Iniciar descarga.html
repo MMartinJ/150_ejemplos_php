@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descarga</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f5f5f5;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    let segundos = 3;
+    function cuentaAtras() {
+      const contador = document.getElementById('contador');
+      contador.textContent = segundos;
+      if (segundos > 0) {
+        segundos--;
+        setTimeout(cuentaAtras, 1000);
+      } else {
+        window.location.href = 'archivo.rar';
+      }
+    }
+    window.onload = cuentaAtras;
+  </script>
+</head>
+<body>
+  <p>La descarga comenzará en <span id="contador">3</span> segundos.</p>
+  <p>Si no empieza, pulsa <a href="archivo.rar">aquí</a>.</p>
+</body>
+</html>
+

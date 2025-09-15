@@ -1,55 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {margin:0;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú fijo actualizado</title>
+  <style>
+    :root {
+      --color-primario: #06f;
+      --color-texto: #f2f2f2;
+      --color-hover-bg: #ddd;
+      --color-hover-texto: #000;
+    }
 
-.navbar {
-	overflow: hidden;
-	background-color: #06F;
-	position: fixed;
-	top: 0;
-	width: 100%;
-}
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
 
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+    nav.navbar {
+      background-color: var(--color-primario);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
 
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
+    nav.navbar a {
+      color: var(--color-texto);
+      text-decoration: none;
+      padding: 14px 16px;
+      font-size: 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
 
-.main {
-  padding: 16px;
-  margin-top: 30px;
-  height: 1500px; /* Used in this example to enable scrolling */
-}
-</style>
+    nav.navbar a:hover {
+      background: var(--color-hover-bg);
+      color: var(--color-hover-texto);
+    }
+
+    main {
+      padding: 1rem;
+      margin-top: 60px; /* altura aproximada del nav */
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Responsive: menú en columna en pantallas pequeñas */
+    @media (max-width: 600px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav.navbar a {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="navbar">
-  <a href="#home">Inicio</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contacto</a>
-</div>
+  <nav class="navbar" aria-label="Menú principal">
+    <a href="#home">Inicio</a>
+    <a href="#news">Noticias</a>
+    <a href="#contact">Contacto</a>
+  </nav>
 
-<div class="main">
-  <h1>Menú fijo</h1>
-  <h2> Haz Scroll para ver como funciona</h2>
-
-  <p><img src="foto.jpg" width="1600" height="900"></p>
-</div>
+  <main>
+    <h1>Menú fijo</h1>
+    <h2>Haz scroll para ver cómo funciona</h2>
+    <p><img src="foto.jpg" alt="Imagen de ejemplo"></p>
+    <p style="height: 1500px;">Contenido de prueba para hacer scroll...</p>
+  </main>
 
 </body>
 </html>
-
